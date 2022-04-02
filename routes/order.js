@@ -16,7 +16,7 @@ router.get('/purchase/:id', function (req, res, next) {
       return res.send({ message: 'out of stock' })
     }
     request(
-      process.env.catalog ç+ '/book/' + id + '?stock=-1',
+      process.env.catalog + '/book/' + id + '?stock=-1',
       { json: true, method: 'PUT' },
       (err, response2, body) => {
         if (response2.statusCode == 200) {
