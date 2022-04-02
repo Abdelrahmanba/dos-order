@@ -15,12 +15,13 @@ router.get('/purchase/:id', function (req, res, next) {
     if (body.stock <= 0) {
       return res.send({ message: 'out of stock' })
     }
+    const bookName = body.title
     request(
       process.env.catalog + '/book/' + id + '?stock=-1',
       { json: true, method: 'PUT' },
       (err, response2, body) => {
         if (response2.statusCode == 200) {
-          res.send({ message: 'thank you for your purchase.' })
+          res.send({ message: 'thank you for your purchase.\n book: '+ bookName})
         } else {
           res.send({ message: 'something went wrong' })
         }
